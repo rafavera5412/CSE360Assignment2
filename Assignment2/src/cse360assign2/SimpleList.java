@@ -14,7 +14,9 @@ public class SimpleList
 	private int count; // creating a private variable to count
 
 
-	// This is the constructor method that contains list and count
+	/**
+	 * This is the constructor method that contains list and count
+	 */
 	public SimpleList() 
 	{
 		list = new int[10]; // list is now an array that can hold 10 integer
@@ -22,8 +24,11 @@ public class SimpleList
 	}
 
 
-	// This is a method that is going to add int object into an 
-	// array, and adjust the array at an index accordingly using count
+	/**
+	 * This is a method that is going to add int object into an 
+	 * array, and adjust the array at an index accordingly using count
+	 * @param object this is the object that is going to be added into the array
+	 */
 	public void add(int object) 
 	{	// this if statement makes sure that the index of the array contains 10 elements
 		if(count == 10)  
@@ -43,8 +48,10 @@ public class SimpleList
 	}
 
 
-	// This is a method that is going to remove 
-	// int object from an array
+	/**
+	 * This is a method that is going to remove int object from an array
+	 * @param object this is the object that is going to be removed from the array
+	 */
 	public void remove(int object) 
 	{
 		int trueindex = 9; // set the index of the array to 9 so that an element can be removed at this index
@@ -74,15 +81,22 @@ public class SimpleList
 	}
 	
 
-	// This is a method that returns the number of elements within the array
+	/**
+	 * This is a method that returns the number of elements within the array
+	 * @return count this returns the number of elements within the array
+	 */
 	public int count() 
 	{
 		return count;
 	}
 
 	
-	// This is the toString method that is going to print 
-	// out the array with spaces in between each element
+	/**
+	 *  This is the toString method that is going to print 
+	 *  out the array with spaces in between each element
+	 *  @return finalarray this is going to return the finalarray
+	 *  which contains the spacing with the elements
+	 */
 	public String toString() 
 	{
 		String finalarray = "";
@@ -102,8 +116,13 @@ public class SimpleList
 	}
 
 
-	//Searches for the specified value's index in the array and returns that value
-	// This is a method that is going to search for an element within the array and return the index
+	/**
+	 * Searches for the specified value's index in the array and returns that value 
+	 * this is a method that is going to search for an element within the array and return the index
+	 * @param search this is the parameter for the element that is going to be searched in the array
+	 * @return -1 this will be returned if the element is not within the array
+	 * @return trueindex this is returned if the element within the array is found
+	 */
 	public int search(int search) 
 	{
 		int counter = 0;
@@ -125,5 +144,73 @@ public class SimpleList
 			return -1; // it returns -1 if the element was not within the array
 		else 
 			return trueindex; // this is returned if the element within the array is found	
+	}
+	
+	
+	/**
+	 * This append method is going to append the parameter at the end, 
+	 * it will increase the size by 50% if the list is full and increase the count.
+	 * @param object is the new element that is going to be added
+	 */
+	public void append (int object) 
+	{
+		if (count == list.length) 
+		{
+			int[] newarray = new int[count + count / 2]; // this is an array that has the 50% space to increase the list
+			int originalcount = count - 1; // this is the counter of the element at the end of the array
+			
+			
+			for (int startloop = 0; startloop <= originalcount; startloop++) // this for loop creates a new array with the same elements as original
+			{
+				newarray[startloop] = list[startloop]; // here the array is being appended and the size is increasing
+			}
+
+			list = newarray; // list is now larger
+		}
+
+		list[count] = object; // the element is added and count is increased
+		count++;
+	}
+
+
+	/**
+	 * This method is going to return the first element within the array,
+	 * if there are no elements it returns -1
+	 * @return -1 this is the value returned when the array is empty
+	 * @return list[0] this is the first element within the array
+	 */
+	public int first() 
+	{
+		if (count == 0) // if there is nothing in the array then it returns -1
+			return -1; 
+		
+		return list[0]; // return first element
+	}
+	
+	
+	/**
+	 * This method is going to return the last element within the array,
+	 * if there are no elements it returns -1
+	 * @return -1 this is the value returned when the array is empty
+	 * @return list[count - 1] this is the last element within the array
+	 */
+	public int last()
+	{
+		if (count == 0) // if there is nothing in the array then it returns -1
+			return -1; 
+		
+		return list[count - 1]; // return last element
+	}
+	
+	
+	/**
+	 * This method is going to return the current number of possible 
+	 * locations within the array
+	 * @return list.length this is the current number of possible
+	 *  locations in the array
+	 */
+	public int size() 
+	{
+		return list.length; // returns the current number of possible locations
 	}
 }
